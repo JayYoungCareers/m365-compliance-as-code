@@ -1,0 +1,31 @@
+# Terraform state and credentials — never commit these
+*.tfstate
+*.tfstate.*
+*.tfvars.backup
+.terraform/
+crash.log
+
+# .terraform.lock.hcl is NOT ignored — Terraform recommends committing it for
+# reproducible provider version selection across machines/CI.
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Local .tfvars with secrets — use CI/CD secrets instead
+environments/prod.tfvars
+
+# Real tenant/subscription/app identifiers for local dev — see environments/dev.tfvars
+*.local.tfvars
+
+# Local cache of IDs read back from Security & Compliance PowerShell (see scripts/) —
+# not a Terraform state file, but not source of truth either; the tenant is.
+.compliance-state/
+
+# Certificates used for Security & Compliance PowerShell app-only auth
+*.pfx
+*.cer
+
+# OS
+.DS_Store
+Thumbs.db

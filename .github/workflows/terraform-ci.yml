@@ -1,0 +1,35 @@
+name: Terraform CI
+
+# Scoped to fmt + validate only. `plan`/`apply` need a Windows runner with a
+# Security & Compliance PowerShell certificate and the ExchangeOnlineManagement module
+# installed (see README.md) — that's a self-hosted-runner concern, not something a stock
+# hosted GitHub runner can do, so it's deliberately not wired up here.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  fmt-and-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.15.8"
+
+      - name: Terraform fmt
+        run: terraform fmt -check -recursive
+
+      - name: Terraform init (no backend)
+        run: terraform init -backend=false
+
+      - name: Terraform validate
+        run: terraform validate
