@@ -156,5 +156,3 @@ Stated plainly, because a compliance baseline that oversells itself is the wrong
 ---
 
 Built by [Jay Young](https://github.com/JayYoungCareers). See also [cgep-labs](https://github.com/JayYoungCareers/cgep-labs) — NIST 800-53 controls implemented in Terraform and enforced by OPA/Rego policy gates in CI.
-# m365-compliance-as-code
-Infrastructure-as-code framework for deploying and managing Microsoft 365 compliance policies across dev and prod environments via Terraform and GitHub Actions CI/CD.
